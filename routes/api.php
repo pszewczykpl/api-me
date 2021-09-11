@@ -17,15 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/experiences/search/{keyword}', [App\Http\Controllers\ExperienceController::class, 'search']);
+Route::get('/experiences/{experience}', [App\Http\Controllers\ExperienceController::class, 'show']);
+Route::get('/experiences', [App\Http\Controllers\ExperienceController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
-    Route::apiResources([
-        'experiences' => \App\Http\Controllers\ExperienceController::class,
-    ]);
+    Route::post('/experiences', [App\Http\Controllers\ExperienceController::class, 'store']);
+    Route::put('/experiences/{experience}', [App\Http\Controllers\ExperienceController::class, 'update']);
+    Route::delete('/experiences/{experience}', [App\Http\Controllers\ExperienceController::class, 'destroy']);
 
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 

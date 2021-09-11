@@ -26,14 +26,14 @@ class AuthController extends Controller
 
         $token = $user->createToken('apimetoken')->plainTextToken;
 
-        return [
+        return array(
             'user' => $user,
             'token' => $token
-        ];
+        );
     }
 
     /**
-     * @throws ValidationException
+     *
      */
     public function login(Request $request) {
         $request->validate([
@@ -44,9 +44,9 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+            return [
+                'message' => 'The provided credentials are incorrect.',
+            ];
         }
 
         $token = $user->createToken('apimetoken')->plainTextToken;
@@ -60,8 +60,8 @@ class AuthController extends Controller
     public function logout(Request $request) {
         auth('sanctum')->user()->tokens()->delete();
 
-        return array(
-            'message' => 'Logged out'
-        );
+        return [
+            'message' => 'Logged out.'
+        ];
     }
 }

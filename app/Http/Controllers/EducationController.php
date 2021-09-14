@@ -2,85 +2,99 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EducationCollection;
+use App\Http\Resources\EducationResource;
 use App\Models\Education;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class EducationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return EducationCollection
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return new EducationCollection(Education::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
-        //
+        $education = Education::create($request->all());
+
+        return response([
+            'message' => 'Successfully created.',
+            'data' => new EducationResource($education)
+        ], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Education  $education
-     * @return \Illuminate\Http\Response
+     * @param Education $education
+     * @return EducationResource
      */
     public function show(Education $education)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Education  $education
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Education $education)
-    {
-        //
+        return new EducationResource($education);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Education  $education
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Education $education
+     * @return Response
      */
     public function update(Request $request, Education $education)
     {
-        //
+        $education->update($request->all());
+
+        return response([
+            'message' => 'Successfully updated.',
+            'data' => new EducationResource($education)
+        ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Education  $education
-     * @return \Illuminate\Http\Response
+     * @param Education $education
+     * @return Response
      */
     public function destroy(Education $education)
     {
-        //
+        $education->delete();
+
+        return response([
+            'message' => 'Successfully deleted.'
+        ], 200);
+    }
+
+    /**
+     * Search the resource.
+     *
+     * @param Request $request
+     * @param string $keyword
+     * @return EducationCollection
+     */
+    public function search(Request $request, string $keyword)
+    {
+        $results = Education::where(function ($query) use($keyword) {
+            foreach (Education::$searchColumns as $column) {
+                $query->orWhere($column, 'like', '%' . trim($keyword) . '%');
+            }
+        })->get();
+
+        return new EducationCollection($results);
     }
 }

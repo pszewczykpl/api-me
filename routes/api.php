@@ -29,6 +29,10 @@ Route::get('/hobbies/search/{keyword}', [App\Http\Controllers\HobbyController::c
 Route::get('/hobbies/{hobby}', [App\Http\Controllers\HobbyController::class, 'show']);
 Route::get('/hobbies', [App\Http\Controllers\HobbyController::class, 'index']);
 
+Route::get('/projects/search/{keyword}', [App\Http\Controllers\ProjectController::class, 'search']);
+Route::get('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'show']);
+Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index']);
+
 Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/experiences', [App\Http\Controllers\ExperienceController::class, 'store']);
@@ -42,6 +46,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/hobbies', [App\Http\Controllers\HobbyController::class, 'store']);
     Route::put('/hobbies/{hobby}', [App\Http\Controllers\HobbyController::class, 'update']);
     Route::delete('/hobbies/{hobby}', [App\Http\Controllers\HobbyController::class, 'destroy']);
+
+    Route::post('/projects', [App\Http\Controllers\ProjectController::class, 'store']);
+    Route::put('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'update']);
+    Route::delete('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'destroy']);
 
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 

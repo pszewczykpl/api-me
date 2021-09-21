@@ -31,7 +31,8 @@ class ExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        $experience = Experience::create($request->all());
+        $experience = new Experience($request->all());
+        Auth('sanctum')->user()->experiences()->save($experience);
 
         return response([
             'message' => 'Successfully created.',

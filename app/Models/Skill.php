@@ -12,4 +12,12 @@ class Skill extends Model
     protected $fillable = ['name'];
 
     public static $searchColumns = ['name'];
+
+    /**
+     * Get the user of skill.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

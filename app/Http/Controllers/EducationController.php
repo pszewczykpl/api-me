@@ -29,7 +29,8 @@ class EducationController extends Controller
      */
     public function store(Request $request)
     {
-        $education = Education::create($request->all());
+        $education = new Education($request->all());
+        Auth('sanctum')->user()->educations()->save($education);
 
         return response([
             'message' => 'Successfully created.',

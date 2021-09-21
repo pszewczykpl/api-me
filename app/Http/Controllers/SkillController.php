@@ -28,7 +28,8 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        $skill = Skill::create($request->all());
+        $skill = new Skill($request->all());
+        Auth('sanctum')->user()->skills()->save($skill);
 
         return response([
             'message' => 'Successfully created.',

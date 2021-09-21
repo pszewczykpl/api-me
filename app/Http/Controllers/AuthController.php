@@ -18,10 +18,17 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        if(User::where('main', True)->count() > 0) {
+            $main = False;
+        } else {
+            $main = True;
+        }
+
         $user = User::create([
             'name' => $fields['name'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
+            'main' => $main,
         ]);
 
         $token = $user->createToken('apimetoken')->plainTextToken;

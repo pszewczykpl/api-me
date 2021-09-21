@@ -22,6 +22,7 @@ class CreateExperiencesTable extends Migration
             $table->boolean('currently_working');
             $table->text('description')->nullable();
             $table->string('localization');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

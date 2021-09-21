@@ -29,7 +29,8 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $project = Project::create($request->all());
+        $project = new Project($request->all());
+        Auth('sanctum')->user()->projects()->save($project);
 
         return response([
             'message' => 'Successfully created.',

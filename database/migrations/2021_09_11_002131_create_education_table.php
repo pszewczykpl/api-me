@@ -23,6 +23,7 @@ class CreateEducationTable extends Migration
             $table->boolean('currently_study');
             $table->text('description')->nullable();
             $table->string('localization');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

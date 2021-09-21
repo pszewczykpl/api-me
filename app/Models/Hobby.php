@@ -12,4 +12,12 @@ class Hobby extends Model
     protected $fillable = ['name', 'description'];
 
     public static $searchColumns = ['name', 'description'];
+
+    /**
+     * Get the user of hobby.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

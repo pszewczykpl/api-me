@@ -12,4 +12,12 @@ class Project extends Model
     protected $fillable = ['name', 'description', 'url'];
 
     public static $searchColumns = ['name', 'description', 'url'];
+
+    /**
+     * Get the user of project.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

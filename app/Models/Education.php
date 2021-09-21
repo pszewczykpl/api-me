@@ -12,4 +12,12 @@ class Education extends Model
     protected $fillable = ['university', 'degree', 'field_of_study', 'from_date', 'to_date', 'currently_study', 'description', 'localization'];
 
     public static $searchColumns = ['university', 'degree', 'field_of_study', 'from_date', 'to_date', 'description', 'localization'];
+
+    /**
+     * Get the user of education.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

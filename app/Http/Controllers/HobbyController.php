@@ -29,7 +29,8 @@ class HobbyController extends Controller
      */
     public function store(Request $request)
     {
-        $hobby = Hobby::create($request->all());
+        $hobby = new Hobby($request->all());
+        Auth('sanctum')->user()->hobbies()->save($hobby);
 
         return response([
             'message' => 'Successfully created.',

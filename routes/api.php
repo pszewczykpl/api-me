@@ -36,6 +36,14 @@ Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index']
 Route::get('/skills/{skill}', [App\Http\Controllers\SkillController::class, 'show']);
 Route::get('/skills', [App\Http\Controllers\SkillController::class, 'index']);
 
+
+Route::get('/profile/{user}/experiences', [App\Http\Controllers\UserController::class, 'userExperiences']);
+Route::get('/profile/{user}/educations', [App\Http\Controllers\UserController::class, 'userEducations']);
+Route::get('/profile/{user}/projects', [App\Http\Controllers\UserController::class, 'userProjects']);
+Route::get('/profile/{user}/skills', [App\Http\Controllers\UserController::class, 'userSkills']);
+Route::get('/profile/{user}/hobbies', [App\Http\Controllers\UserController::class, 'userHobbies']);
+Route::get('/profile/{user}', [App\Http\Controllers\UserController::class, 'profile']);
+
 Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/experiences', [App\Http\Controllers\ExperienceController::class, 'store']);
@@ -57,6 +65,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/skills', [App\Http\Controllers\SkillController::class, 'store']);
     Route::put('/skills/{skill}', [App\Http\Controllers\SkillController::class, 'update']);
     Route::delete('/skills/{skill}', [App\Http\Controllers\SkillController::class, 'destroy']);
+
 
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 

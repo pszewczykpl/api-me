@@ -15,13 +15,26 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name,
-            'email' => $this->email,
-            'experiences' => $this->experiences,
-            'educations' => $this->educations,
-            'projects' => $this->projects,
-            'skills' => $this->skills,
-            'hobbies' => $this->hobbies,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'about' => $this->description,
+            'contact' => [
+                'email' => $this->email,
+                'phone' => $this->phone,
+                'address' => $this->address,
+            ],
+            'website' => $this->www,
+            'social_media' => [
+                'linkedin' => $this->social_linkedin,
+                'github' => $this->social_github,
+                'facebook' => $this->social_facebook,
+                'twitter' => $this->social_twitter,
+            ],
+            'experiences' => new ExperienceCollection($this->experiences),
+            'educations' => new EducationCollection($this->educations),
+            'projects' => new ProjectCollection($this->projects),
+            'skills' => new SkillCollection($this->skills),
+            'hobbies' => new HobbyCollection($this->hobbies),
         ];
     }
 }

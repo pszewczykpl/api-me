@@ -14,21 +14,16 @@ class AuthController extends Controller
     public function register(Request $request) {
         $fields = $request->validate([
             'email' => 'required|email|unique:users',
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'password' => 'required',
         ]);
 
-        if(User::where('main', True)->count() > 0) {
-            $main = False;
-        } else {
-            $main = True;
-        }
-
         $user = User::create([
-            'name' => $fields['name'],
+            'first_name' => $fields['first_name'],
+            'last_name' => $fields['last_name'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
-            'main' => $main,
         ]);
 
         $token = $user->createToken('apimetoken')->plainTextToken;

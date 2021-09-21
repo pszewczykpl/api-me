@@ -24,8 +24,6 @@ class ExperienceResource extends JsonResource
             'currently_working' => $this->currently_working,
             'description' => $this->description,
             'localization' => $this->localization,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 }

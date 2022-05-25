@@ -22,7 +22,14 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
-        'main',
+        'address',
+        'phone',
+        'www',
+        'social_facebook',
+        'social_twitter',
+        'social_linkedin',
+        'social_github',
+        'description'
     ];
 
     /**

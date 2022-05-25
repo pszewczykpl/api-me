@@ -24,6 +24,7 @@ class EducationResource extends JsonResource
             'currently_study' => $this->currently_study,
             'description' => $this->description,
             'localization' => $this->localization,
+            'user_id' => $this->user->id,
         ];
     }
 }

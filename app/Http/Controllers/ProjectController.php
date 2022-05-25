@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ProjectCollection;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -16,7 +15,7 @@ class ProjectController extends Controller
      *
      * @return ProjectCollection
      */
-    public function index()
+    public function index(): ProjectCollection
     {
         return new ProjectCollection(Project::all());
     }

@@ -20,27 +20,9 @@ class UserController extends Controller
      * @param User $user
      * @return UserResource
      */
-    public function profile(Request $request, User $user) {
+    public function profile(Request $request) {
+        $user = User::first();
+
         return new UserResource($user);
-    }
-
-    public function userExperiences(Request $request, User $user) {
-        return new ExperienceCollection($user->experiences);
-    }
-
-    public function userEducations(Request $request, User $user) {
-        return new EducationCollection($user->educations);
-    }
-
-    public function userProjects(Request $request, User $user) {
-        return new ProjectCollection($user->projects);
-    }
-
-    public function userSkills(Request $request, User $user) {
-        return new SkillCollection($user->skills);
-    }
-
-    public function userHobbies(Request $request, User $user) {
-        return new HobbyCollection($user->hobbies);
     }
 }

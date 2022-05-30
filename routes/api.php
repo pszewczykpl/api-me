@@ -37,12 +37,7 @@ Route::get('/skills/{skill}', [App\Http\Controllers\SkillController::class, 'sho
 Route::get('/skills', [App\Http\Controllers\SkillController::class, 'index']);
 
 
-Route::get('/profile/{user}/experiences', [App\Http\Controllers\UserController::class, 'userExperiences']);
-Route::get('/profile/{user}/educations', [App\Http\Controllers\UserController::class, 'userEducations']);
-Route::get('/profile/{user}/projects', [App\Http\Controllers\UserController::class, 'userProjects']);
-Route::get('/profile/{user}/skills', [App\Http\Controllers\UserController::class, 'userSkills']);
-Route::get('/profile/{user}/hobbies', [App\Http\Controllers\UserController::class, 'userHobbies']);
-Route::get('/profile/{user}', [App\Http\Controllers\UserController::class, 'profile']);
+Route::get('/about-me', [App\Http\Controllers\UserController::class, 'profile']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
 

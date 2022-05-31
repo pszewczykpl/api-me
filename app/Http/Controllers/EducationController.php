@@ -16,7 +16,7 @@ class EducationController extends Controller
      *
      * @return EducationCollection
      */
-    public function index()
+    public function index(): EducationCollection
     {
         return new EducationCollection(Education::all());
     }
@@ -27,7 +27,7 @@ class EducationController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $education = new Education($request->all());
         Auth('sanctum')->user()->educations()->save($education);
@@ -44,7 +44,7 @@ class EducationController extends Controller
      * @param Education $education
      * @return EducationResource
      */
-    public function show(Education $education)
+    public function show(Education $education): EducationResource
     {
         return new EducationResource($education);
     }
@@ -56,7 +56,7 @@ class EducationController extends Controller
      * @param Education $education
      * @return Response
      */
-    public function update(Request $request, Education $education)
+    public function update(Request $request, Education $education): Response
     {
         $education->update($request->all());
 
@@ -72,7 +72,7 @@ class EducationController extends Controller
      * @param Education $education
      * @return Response
      */
-    public function destroy(Education $education)
+    public function destroy(Education $education): Response
     {
         $education->delete();
 

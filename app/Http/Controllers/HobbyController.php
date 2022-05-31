@@ -16,7 +16,7 @@ class HobbyController extends Controller
      *
      * @return HobbyCollection
      */
-    public function index()
+    public function index(): HobbyCollection
     {
         return new HobbyCollection(Hobby::all());
     }
@@ -27,7 +27,7 @@ class HobbyController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $hobby = new Hobby($request->all());
         Auth('sanctum')->user()->hobbies()->save($hobby);
@@ -44,7 +44,7 @@ class HobbyController extends Controller
      * @param Hobby $hobby
      * @return HobbyResource
      */
-    public function show(Hobby $hobby)
+    public function show(Hobby $hobby): HobbyResource
     {
         return new HobbyResource($hobby);
     }
@@ -56,7 +56,7 @@ class HobbyController extends Controller
      * @param Hobby $hobby
      * @return Response
      */
-    public function update(Request $request, Hobby $hobby)
+    public function update(Request $request, Hobby $hobby): Response
     {
         $hobby->update($request->all());
 
@@ -72,7 +72,7 @@ class HobbyController extends Controller
      * @param Hobby $hobby
      * @return Response
      */
-    public function destroy(Hobby $hobby)
+    public function destroy(Hobby $hobby): Response
     {
         $hobby->delete();
 
@@ -88,7 +88,7 @@ class HobbyController extends Controller
      * @param string $keyword
      * @return HobbyCollection
      */
-    public function search(Request $request, string $keyword)
+    public function search(Request $request, string $keyword): HobbyCollection
     {
         $results = Hobby::where(function ($query) use($keyword) {
             foreach (Hobby::$searchColumns as $column) {

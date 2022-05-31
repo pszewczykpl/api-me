@@ -18,7 +18,7 @@ class ExperienceController extends Controller
      *
      * @return ExperienceCollection
      */
-    public function index()
+    public function index(): ExperienceCollection
     {
         return new ExperienceCollection(Experience::all());
     }
@@ -29,7 +29,7 @@ class ExperienceController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $experience = new Experience($request->all());
         Auth('sanctum')->user()->experiences()->save($experience);
@@ -47,7 +47,7 @@ class ExperienceController extends Controller
      * @param Experience $experience
      * @return ExperienceResource
      */
-    public function show(Experience $experience)
+    public function show(Experience $experience): ExperienceResource
     {
         return new ExperienceResource($experience);
     }
@@ -91,7 +91,7 @@ class ExperienceController extends Controller
      * @param string $keyword
      * @return ExperienceCollection
      */
-    public function search(Request $request, string $keyword)
+    public function search(Request $request, string $keyword): ExperienceCollection
     {
         $results = Experience::where(function ($query) use($keyword) {
             foreach (Experience::$searchColumns as $column) {

@@ -26,9 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('social_linkedin')->nullable();
             $table->string('social_github')->nullable();
             $table->text('description')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

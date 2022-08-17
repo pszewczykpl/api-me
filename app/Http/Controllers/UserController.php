@@ -17,10 +17,10 @@ class UserController extends Controller
 {
     /**
      * @param Request $request
-     * @param User $user
      * @return UserResource
      */
-    public function profile(Request $request) {
+    public function profile(Request $request): UserResource
+    {
         $user = User::first();
 
         return new UserResource($user);

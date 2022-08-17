@@ -26,7 +26,7 @@ class ProjectController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $project = new Project($request->all());
         Auth('sanctum')->user()->projects()->save($project);
@@ -43,7 +43,7 @@ class ProjectController extends Controller
      * @param Project $project
      * @return ProjectResource
      */
-    public function show(Project $project)
+    public function show(Project $project): ProjectResource
     {
         return new ProjectResource($project);
     }
@@ -55,7 +55,7 @@ class ProjectController extends Controller
      * @param Project $project
      * @return Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Project $project): Response
     {
         $project->update($request->all());
 
@@ -71,7 +71,7 @@ class ProjectController extends Controller
      * @param Project $project
      * @return Response
      */
-    public function destroy(Project $project)
+    public function destroy(Project $project): Response
     {
         $project->delete();
 
@@ -87,7 +87,7 @@ class ProjectController extends Controller
      * @param string $keyword
      * @return ProjectCollection
      */
-    public function search(Request $request, string $keyword)
+    public function search(Request $request, string $keyword): ProjectCollection
     {
         $results = Project::where(function ($query) use($keyword) {
             foreach (Project::$searchColumns as $column) {

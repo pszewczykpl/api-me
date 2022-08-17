@@ -7,6 +7,7 @@ use App\Http\Resources\SkillResource;
 use App\Models\Skill;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class SkillController extends Controller
 {
@@ -15,7 +16,7 @@ class SkillController extends Controller
      *
      * @return SkillCollection
      */
-    public function index()
+    public function index(): SkillCollection
     {
         return new SkillCollection(Skill::all());
     }
@@ -23,10 +24,10 @@ class SkillController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $skill = new Skill($request->all());
         Auth('sanctum')->user()->skills()->save($skill);
@@ -40,10 +41,10 @@ class SkillController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Skill  $skill
+     * @param Skill $skill
      * @return SkillResource
      */
-    public function show(Skill $skill)
+    public function show(Skill $skill): SkillResource
     {
         return new SkillResource($skill);
     }
@@ -51,11 +52,11 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Skill  $skill
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Skill $skill
+     * @return Response
      */
-    public function update(Request $request, Skill $skill)
+    public function update(Request $request, Skill $skill): Response
     {
         $skill->update($request->all());
 
@@ -68,10 +69,10 @@ class SkillController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Skill  $skill
-     * @return \Illuminate\Http\Response
+     * @param Skill $skill
+     * @return Response
      */
-    public function destroy(Skill $skill)
+    public function destroy(Skill $skill): Response
     {
         $skill->delete();
 

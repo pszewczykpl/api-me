@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -34,9 +35,17 @@ class AuthController extends Controller
          */
         $fields = $request->validate([
             'email' => 'required|email|unique:users',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'password' => 'required',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'password' => 'required|string|min:8',
+            'address' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:9',
+            'www' => 'nullable|url',
+            'social_facebook' => 'nullable|url',
+            'social_twitter' => 'nullable|url',
+            'social_linkedin' => 'nullable|url',
+            'social_github' => 'nullable|url',
+            'description' => 'nullable|string',
         ]);
 
         /**
@@ -47,12 +56,20 @@ class AuthController extends Controller
             'last_name' => $fields['last_name'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
+            'address' => $fields['address'],
+            'phone' => $fields['phone'],
+            'www' => $fields['www'],
+            'social_facebook' => $fields['social_facebook'],
+            'social_twitter' => $fields['social_twitter'],
+            'social_linkedin' => $fields['social_linkedin'],
+            'social_github' => $fields['social_github'],
+            'description' => $fields['description'],
         ]);
 
         /**
          * Create token
          */
-        $token = $user->createToken('apimetoken')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response([
             'user' => $user,
@@ -91,7 +108,7 @@ class AuthController extends Controller
         /**
          * Create tokek
          */
-        $token = $user->createToken('apimetoken')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response([
             'user' => $user,

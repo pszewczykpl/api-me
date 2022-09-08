@@ -89,7 +89,7 @@ class EducationController extends Controller
      * @param string $keyword
      * @return EducationCollection
      */
-    public function search(Request $request, string $keyword)
+    public function search(Request $request, string $keyword): EducationCollection
     {
         $results = Education::where(function ($query) use($keyword) {
             foreach (Education::$searchColumns as $column) {

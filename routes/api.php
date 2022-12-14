@@ -37,7 +37,7 @@ Route::get('/skills/{skill}', [App\Http\Controllers\SkillController::class, 'sho
 Route::get('/skills', [App\Http\Controllers\SkillController::class, 'index']);
 
 
-Route::get('/about-me', [App\Http\Controllers\UserController::class, 'profile']);
+Route::get('/about', [App\Http\Controllers\UserController::class, 'profile']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
 

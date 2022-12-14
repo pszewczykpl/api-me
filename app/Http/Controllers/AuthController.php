@@ -21,8 +21,9 @@ class AuthController extends Controller
      * @return Response
      */
     public function register(Request $request) {
+
         /**
-         * Only 1 user for app (me)
+         * App is designed for only one user.
          */
         if(User::exists()) {
             return response([
@@ -106,7 +107,7 @@ class AuthController extends Controller
         }
 
         /**
-         * Create tokek
+         * Create token
          */
         $token = $user->createToken('auth_token')->plainTextToken;
 

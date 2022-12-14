@@ -16,11 +16,14 @@ class EducationResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'code_toil' => $this->code_toil,
-            'code' => $this->code,
-            'group' => $this->group,
-            'published_at' => $this->published_at,
+            'university' => $this->university,
+            'degree' => $this->degree,
+            'field_of_study' => $this->field_of_study,
+            'from_date' => $this->from_date,
+            'to_date' => $this->when(! (boolean) $this->currently_study, $this->to_date),
+            'currently_study' => $this->currently_study,
+            'description' => $this->description,
+            'localization' => $this->localization,
         ];
     }
 }

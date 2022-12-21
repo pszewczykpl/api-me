@@ -13,7 +13,7 @@ Aplikacja w aktualnej konfiguracji pozwala na zarejestrowanie się **jednemu uż
 
 ## Moje demo
 Zapraszam do zapoznania się z moją wersją aplikacji :)<br>
-**GET** *api.pszewczyk.pl/about*
+**GET** *https://api.pszewczyk.pl/about*
 
 ## Dokumentacja
 Aby zapoznać sie z pełną dokumentacją interfejsu API niniejszej aplikacji zapraszam do przejrzenia dokumentacji przygotowanej w Postman:<br>

@@ -9,9 +9,24 @@ class Experience extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['position', 'company', 'from_date', 'to_date', 'currently_working', 'description', 'localization'];
+    protected $fillable = [
+        'position',
+        'company',
+        'from_date',
+        'to_date',
+        'currently_working',
+        'description',
+        'localization'
+    ];
 
-    public static $searchColumns = ['position', 'company', 'from_date', 'to_date', 'description', 'localization'];
+    public static $searchColumns = [
+        'position', 
+        'company', 
+        'from_date', 
+        'to_date', 
+        'description', 
+        'localization'
+    ];
 
     /**
      * Get the user of experience.

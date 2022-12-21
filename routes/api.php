@@ -36,7 +36,6 @@ Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index']
 Route::get('/skills/{skill}', [App\Http\Controllers\SkillController::class, 'show']);
 Route::get('/skills', [App\Http\Controllers\SkillController::class, 'index']);
 
-
 Route::get('/about', [App\Http\Controllers\UserController::class, 'profile']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -61,8 +60,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/skills/{skill}', [App\Http\Controllers\SkillController::class, 'update']);
     Route::delete('/skills/{skill}', [App\Http\Controllers\SkillController::class, 'destroy']);
 
-
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
-
 });
-

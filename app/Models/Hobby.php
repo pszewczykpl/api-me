@@ -9,9 +9,15 @@ class Hobby extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = [
+        'name', 
+        'description'
+    ];
 
-    public static $searchColumns = ['name', 'description'];
+    public static $searchColumns = [
+        'name', 
+        'description'
+    ];
 
     /**
      * Get the user of hobby.

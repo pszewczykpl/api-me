@@ -9,9 +9,26 @@ class Education extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['university', 'degree', 'field_of_study', 'from_date', 'to_date', 'currently_study', 'description', 'localization'];
+    protected $fillable = [
+        'university',
+        'degree',
+        'field_of_study',
+        'from_date',
+        'to_date',
+        'currently_study',
+        'description',
+        'localization'
+    ];
 
-    public static $searchColumns = ['university', 'degree', 'field_of_study', 'from_date', 'to_date', 'description', 'localization'];
+    public static $searchColumns = [
+        'university',
+        'degree',
+        'field_of_study',
+        'from_date',
+        'to_date',
+        'description',
+        'localization'
+    ];
 
     /**
      * Get the user of education.

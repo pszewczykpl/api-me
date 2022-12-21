@@ -23,7 +23,8 @@ class AuthController extends Controller
     public function register(Request $request) {
 
         /**
-         * App is designed for only one user.
+         * Currently app supports only one user, so we check if user exists.
+         * If user exists, we return error.
          */
         if(User::exists()) {
             return response([
@@ -32,7 +33,7 @@ class AuthController extends Controller
         }
 
         /**
-         * Validation
+         * Validation rules.
          */
         $fields = $request->validate([
             'email' => 'required|email|unique:users',
@@ -50,7 +51,7 @@ class AuthController extends Controller
         ]);
 
         /**
-         * Creating user
+         * Creating user.
          */
         $user = User::create([
             'first_name' => $fields['first_name'],
@@ -68,7 +69,7 @@ class AuthController extends Controller
         ]);
 
         /**
-         * Create token
+         * Create token for user.
          */
         $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -85,7 +86,7 @@ class AuthController extends Controller
     public function login(Request $request): Response
     {
         /**
-         * Validation
+         * Validation of credentials.
          */
         $request->validate([
             'email' => 'required|email',
@@ -93,12 +94,12 @@ class AuthController extends Controller
         ]);
 
         /**
-         * User
+         * User with provided email.
          */
         $user = User::where('email', $request->email)->first();
 
         /**
-         * Check if credentials are correct
+         * Check if credentials are correct and return error if not.
          */
         if (! $user || ! Hash::check($request->password, $user->password)) {
             return response([
@@ -107,7 +108,7 @@ class AuthController extends Controller
         }
 
         /**
-         * Create token
+         * Create token for user.
          */
         $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -123,6 +124,9 @@ class AuthController extends Controller
      */
     public function logout(Request $request): Response
     {
+        /**
+         * Delete all tokens for user.
+         */
         auth('sanctum')->user()->tokens()->delete();
 
         return response([

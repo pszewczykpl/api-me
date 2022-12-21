@@ -21,6 +21,9 @@ class UserController extends Controller
      */
     public function profile(Request $request): UserResource
     {
+        /**
+         * Currently app supports only one user, so we can just return the first one.
+         */
         $user = User::first();
 
         return new UserResource($user);

@@ -9,9 +9,17 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'url'];
+    protected $fillable = [
+        'name',
+        'description', 
+        'url'
+    ];
 
-    public static $searchColumns = ['name', 'description', 'url'];
+    public static $searchColumns = [
+        'name', 
+        'description', 
+        'url'
+    ];
 
     /**
      * Get the user of project.

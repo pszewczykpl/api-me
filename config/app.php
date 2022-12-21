@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'API-ME'),
+    'name' => env('APP_NAME', 'API-Me'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://api.pszewczyk.pl'),
 
     'asset_url' => env('ASSET_URL', null),
 

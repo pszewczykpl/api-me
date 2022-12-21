@@ -9,9 +9,13 @@ class Skill extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name'
+    ];
 
-    public static $searchColumns = ['name'];
+    public static $searchColumns = [
+        'name'
+    ];
 
     /**
      * Get the user of skill.
